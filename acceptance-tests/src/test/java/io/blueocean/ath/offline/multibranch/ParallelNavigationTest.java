@@ -51,7 +51,7 @@ public class ParallelNavigationTest {
         Files.copy(new File(jenkinsFile.getFile()), new File(git.gitDirectory, "Jenkinsfile"));
         git.addAll();
         git.commit("initial commit");
-        logger.info("Commited Jenkinsfile");
+        logger.info("Committed Jenkinsfile");
 
         MultiBranchPipeline pipeline = mbpFactory.pipeline(pipelineName).createPipeline(git);
         pipeline.getRunDetailsPipelinePage().open(1);
@@ -60,10 +60,21 @@ public class ParallelNavigationTest {
         wait.until(By.xpath("//*[text()=\"firstBranch\"]"));
 
         // and clicking on the unselected node will yield us the second branch
-        wait.until(By.xpath("//*[contains(@class, 'pipeline-node')][3]")).click();
+        wait.click(By.xpath("//*[contains(@class, 'pipeline-node')][3]"));
         wait.until(By.xpath("//*[text()=\"secondBranch\"]"));
 
+        logger.info("Stopping all Pipeline runs");
         pipeline.stopAllRuns();
+
+        /*
+        TODO:
+        Navigate out of this place before the delete, to circumvent the unnecessary
+        browser console error messages I see after doing the delete, but with the
+        pipeline still on screen.
+         */
+
+        // This will provide its own logger message, no need for another.
+        pipeline.deleteThisPipeline(pipeline.getName());
     }
 
 
@@ -89,9 +100,9 @@ public class ParallelNavigationTest {
         wait.until(By.cssSelector(".btn.inputStepSubmit")).click();
 
         // and clicking on the unselected node will yield us the second branch
-        wait.until(By.xpath("//*[contains(@class, 'pipeline-node')][3]")).click();
+        wait.click(By.xpath("//*[contains(@class, 'pipeline-node')][3]"));
         wait.until(By.xpath("//*[text()=\"secondBranch\"]"));
-        wait.until(By.cssSelector(".btn.inputStepSubmit")).click();
+        wait.click(By.cssSelector(".btn.inputStepSubmit"));
     }
 
 

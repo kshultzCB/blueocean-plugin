@@ -42,6 +42,15 @@ public class MultiBranchPipeline extends AbstractPipeline {
         jobApi.abortAllBuilds(getFolder(), getName());
     }
 
+    /**
+     * Deletes the pipeline specified by its caller. 
+     *
+     * @param  name the name of the pipeline you wish to delete.
+     */
+    public void deleteThisPipeline(String name) throws IOException {
+        jobApi.deletePipeline(name);
+    }
+
     @Override
     public boolean isMultiBranch() {
         return true;
