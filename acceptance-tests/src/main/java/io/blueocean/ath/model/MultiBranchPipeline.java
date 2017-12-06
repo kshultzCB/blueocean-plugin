@@ -43,7 +43,7 @@ public class MultiBranchPipeline extends AbstractPipeline {
     }
 
     /**
-     * Deletes the pipeline specified by its caller. 
+     * Deletes the pipeline specified by its caller.
      *
      * @param  name the name of the pipeline you wish to delete.
      */
