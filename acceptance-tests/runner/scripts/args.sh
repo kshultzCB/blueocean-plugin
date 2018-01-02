@@ -3,13 +3,13 @@ SELENIUM_VERSION=2.53
 
 MAVEN_SETTINGS=""
 LOCAL_SNAPSHOTS=false
-RUN_SELENIUM=true
+RUN_SELENIUM=false
 ATH_SERVER_HOST=""
 ATH_SERVER_PORT=""
 PLUGINS=""
 AGGREGATOR_DIR=""
 DEV_JENKINS=false
-PROFILES="-P runTests"
+PROFILES="-P offlineAll"
 JENKINS_JAVA_OPTS="-Djava.util.logging.config.file=./logging.properties"
 TEST_TO_RUN=""
 
