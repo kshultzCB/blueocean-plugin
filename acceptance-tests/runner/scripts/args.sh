@@ -9,7 +9,7 @@ ATH_SERVER_PORT=""
 PLUGINS=""
 AGGREGATOR_DIR=""
 DEV_JENKINS=false
-PROFILES="offline"
+PROFILES="-P offline"
 JENKINS_JAVA_OPTS="-Djava.util.logging.config.file=./logging.properties"
 TEST_TO_RUN=""
 
