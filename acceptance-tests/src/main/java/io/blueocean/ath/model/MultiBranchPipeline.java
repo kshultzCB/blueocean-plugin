@@ -38,6 +38,10 @@ public class MultiBranchPipeline extends AbstractPipeline {
         return this;
     }
 
+    //public void rescanThisPipeline() throws IOException {
+
+    //}
+
     public void stopAllRuns() throws IOException {
         jobApi.abortAllBuilds(getFolder(), getName());
     }

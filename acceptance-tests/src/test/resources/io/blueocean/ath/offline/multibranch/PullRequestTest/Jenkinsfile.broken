@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage ('stage-1-PR-will-fail') {
+            // This is an intentional typo. Should be `steps`
+            step {
+                echo "I have not been modified yet"
+                sh 'echo $PATH'
+            }
+        }
+
+        stage ('Stage 2 before PR') {
+            steps {
+                sh 'set'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "post--always."
+        }
+        success {
+            echo "post--success"
+        }
+        failure {
+            echo "post--failure"
+        }
+    }
+}

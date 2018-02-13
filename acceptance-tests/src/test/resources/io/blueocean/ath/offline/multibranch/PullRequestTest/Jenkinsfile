@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage ('stage-1-before-PR') {
+            steps {
+                echo "I have not been modified yet"
+                sh 'echo $PATH'
+            }
+        }
+
+        stage ('stage-2-before-PR') {
+            steps {
+                echo "Yep, still the old version."
+                sh 'set'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "post--always."
+        }
+        success {
+            echo "post--success"
+        }
+        failure {
+            echo "post--failure"
+        }
+    }
+}

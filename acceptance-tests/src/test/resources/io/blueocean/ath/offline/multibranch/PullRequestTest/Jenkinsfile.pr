@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage ('stage-1-after-PR') {
+            steps {
+                echo "I am part of a PR"
+                sh 'echo $PATH'
+            }
+        }
+
+        stage ('stage-2-after-pr') {
+            steps {
+                echo "See, look at me go, I'm all new and stuff."
+                sh 'set'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "post--always."
+        }
+        success {
+            echo "post--success"
+        }
+        failure {
+            echo "post--failure"
+        }
+    }
+}
