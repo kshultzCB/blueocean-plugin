@@ -102,24 +102,12 @@ public class PullRequestTest {
         git.commit("Second commit for " + pullRequestFlowTest);
         // There's some "classic API" call that can be used to trigger a rescan.
         // What is it?
-        pullRequestFlowTestPipeline.buildBranch("new-branch");
-        pullRequestFlowTestPipeline.getRunDetailsPipelinePage().open(1);
-        Thread.sleep(60000);
-
-
-
-
-        /*
-        All left over from the old. Comment out but keep for syntax
-        pullRequestFlowTestPipeline.getRunDetailsPipelinePage().open(1);
-        wait.until(By.xpath("//*[text()=\"firstBranch\"]"));
-        logger.info("Found first branch");
-        wait.until(By.xpath("//*[text()=\"first branch visible\"]"));
-        wait.click(By.xpath("//*[contains(@class, 'pipeline-node')][3]"));
-        wait.until(By.xpath("//*[text()=\"secondBranch\"]"));
-        wait.until(By.xpath("//*[text()=\"second branch visible\"]"));
-        logger.info("Found second branch");
-        */
+        pullRequestFlowTestPipeline.rescanThisPipeline();
+        // Now when we look at the PRs tab we should get something.
+        wait.click(By.xpath("//*[text()=\"Branches\"]"));
+        wait.until(By.xpath("//*[text()=\"You don't have any open pull requests\"]"));
+        // pullRequestFlowTestPipeline.getRunDetailsPipelinePage().open(1);
+        // Thread.sleep(60000);
     }
 
     @AfterClass
