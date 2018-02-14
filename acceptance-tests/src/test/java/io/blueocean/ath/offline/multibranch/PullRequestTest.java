@@ -100,14 +100,18 @@ public class PullRequestTest {
         Files.copy(new File(secondPullRequestFlowTestJenkinsfile.getFile()), new File(git.gitDirectory, "Jenkinsfile"));
         git.addAll();
         git.commit("Second commit for " + pullRequestFlowTest);
-        // There's some "classic API" call that can be used to trigger a rescan.
-        // What is it?
         pullRequestFlowTestPipeline.rescanThisPipeline();
+        // Now when we look at the Branches tab we should see new-branch
+        wait.click(By.xpath("//*[text()=\"Branches\"]"));
+        wait.until(By.xpath("//*[text()=\"new-branch\"]"));
+        // Now we need a way to create the PR. Should be something like
+        git.createPR("pull-request-for-new-branch");
+        pullRequestFlowTestPipeline.rescanThisPipeline();
+        git.getStatus("new-branch");
         // Now when we look at the PRs tab we should get something.
         wait.click(By.xpath("//*[text()=\"Branches\"]"));
-        wait.until(By.xpath("//*[text()=\"You don't have any open pull requests\"]"));
-        // pullRequestFlowTestPipeline.getRunDetailsPipelinePage().open(1);
-        // Thread.sleep(60000);
+        wait.click(By.xpath("//*[text()=\"Pull Requests\"]"));
+
     }
 
     @AfterClass

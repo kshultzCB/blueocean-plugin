@@ -4,6 +4,7 @@ package io.blueocean.ath;
 import com.google.common.collect.Lists;
 import org.apache.log4j.Logger;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.PullCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.junit.JGitTestUtil;
 import org.eclipse.jgit.lib.Ref;
@@ -60,6 +61,19 @@ public class GitRepositoryRule extends ExternalResource {
         Ref ref = client.branchCreate().setName(branch).call();
         logger.info("Created branch " + branch);
         return ref;
+    }
+
+    // Creates a PR.
+    public void createPR (String pullRequestMessage) throws GitAPIException {
+        PullCommand pullCommand = client.pull().setRemote("origin");
+        client.push();
+        // return pullCommand;
+    }
+
+    public String getStatus (String branch) throws GitAPIException{
+        String gitStatus = client.status().toString();
+        logger.info("Current git status is: " + gitStatus);
+        return gitStatus;
     }
 
     public void writeJenkinsFile(String jenkinsFile) throws IOException {
