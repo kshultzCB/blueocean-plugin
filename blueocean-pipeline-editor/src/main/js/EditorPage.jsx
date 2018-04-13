@@ -100,6 +100,7 @@ class SaveDialog extends React.Component {
         const { errorMessage } = this.state;
 
         const buttons = [
+            // Improve selector
             <button className="btn-primary" onClick={() => this.save()} disabled={this.state.saving}>
                 Save & run
             </button>,
@@ -251,6 +252,7 @@ class PipelineLoader extends React.Component {
             </div>,
             {
                 buttonRow: (
+                    // Improve selector
                     <button className="btn-primary" onClick={() => this.cancel()}>
                         Go Back
                     </button>
@@ -440,6 +442,7 @@ class PipelineLoader extends React.Component {
 
     showErrorDialog(err, { saveRequest, buttonRow, onClose, title } = {}) {
         const buttons = buttonRow || [
+            // Improve selector
             <button className="btn-primary" onClick={() => this.closeDialog()}>
                 Ok
             </button>,
@@ -626,6 +629,7 @@ class PipelineLoader extends React.Component {
                                 {t('editor.page.common.cancel', { default: 'Cancel' })}
                             </button>
                             {pipelineName && (
+                                // Improve selector
                                 <button className="btn-primary inverse" onClick={() => this.showSaveDialog()}>
                                     {t('editor.page.common.save', { default: 'Save' })}
                                 </button>
