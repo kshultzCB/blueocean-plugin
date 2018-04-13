@@ -108,14 +108,14 @@ class SaveDialog extends React.Component {
                 {t('editor.page.common.cancel', { default: 'Cancel' })}
             </button>,
         ];
-
+        // Improve selector in the TextArea thing below with the "What changed" placeholder in it.
         return (
             <Dialog onDismiss={() => this.cancel()} title="Save Pipeline" buttons={buttons} className="save-pipeline-dialog">
-                {errorMessage && (
+                {errorMessage && ( 
                     <div style={{ marginBottom: '10px' }}>
                         <Alerts type="Error" title="Error" message={errorMessage} />
                     </div>
-                )}
+                )} 
                 <div style={{ width: '400px', marginBottom: '16px' }}>Saving the pipeline will commit a Jenkinsfile to the repository.</div>
                 <FormElement title="Description">
                     <TextArea
@@ -125,7 +125,7 @@ class SaveDialog extends React.Component {
                         cols={2}
                         disabled={this.state.saving}
                         onChange={value => this.setState({ commitMessage: value })}
-                    />
+                    /> 
                 </FormElement>
                 <RadioButtonGroup
                     options={this.branchOptions}
