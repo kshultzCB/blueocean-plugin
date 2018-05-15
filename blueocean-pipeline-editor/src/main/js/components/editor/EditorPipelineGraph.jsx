@@ -385,6 +385,9 @@ export class EditorPipelineGraph extends Component<DefaultProps, Props, State> {
         const inner = [];
 
         const classNames = ['pipeline-big-label'];
+        if (details.text !== null) {
+            classNames.push(details.text)
+        }
         if (this.selectedStage === stage) {
             classNames.push('selected');
         }
@@ -402,8 +405,7 @@ export class EditorPipelineGraph extends Component<DefaultProps, Props, State> {
             }
         }
         return (
-            // The id is in here to facilitate easier test automation.
-            <div className={classNames.join(' ')} id={`pipeline-big-label-${details.text ? `${details.text}` : ""}`} style={style} key={key} onClick={e => this.nodeClicked({ isPlaceholder: false, stage }, e)}>
+            <div className={classNames.join(' ')} style={style} key={key} onClick={e => this.nodeClicked({ isPlaceholder: false, stage }, e)}>
                 {details.text || NBSP}
                 {inner}
             </div>

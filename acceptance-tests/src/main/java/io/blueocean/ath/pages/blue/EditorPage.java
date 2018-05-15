@@ -67,7 +67,16 @@ public class EditorPage {
     public void deleteStage(String stageName) {
         logger.info("Deleting stage " + stageName);
         // Click the name of the stage
-        wait.click(By.id("pipeline-big-label-" + stageName));
+        // KS
+        // When I try to do this with classes instead of IDs, it breaks the ability to have
+        // a stage name with a space ` ` in it. That's because the <div> containing the stage
+        // name `stage to be deleted` shows up as div.pipeline-big-label.stage.to.be.deleted.
+        // Could use something hacky like
+        // stageName = stageName.replace("." , ".");
+        // But...ugh. I think an ID is actually a better fit here.
+        // gets shown as a
+        // wait.click(By.id("pipeline-big-label-" + stageName));
+        wait.click(By.cssSelector("div.pipeline-big-label." + stageName));
         // Click the little popup button
         wait.click(By.cssSelector("div.more-menu"));
         // Click Delete
